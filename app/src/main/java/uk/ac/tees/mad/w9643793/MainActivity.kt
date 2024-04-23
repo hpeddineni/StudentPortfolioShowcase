@@ -27,6 +27,10 @@ import uk.ac.tees.mad.w9643793.screens.authentication.SignupScreen
 import uk.ac.tees.mad.w9643793.screens.authentication.authclient.GoogleAuthClient
 import uk.ac.tees.mad.w9643793.screens.dashboard.Dashboard
 import uk.ac.tees.mad.w9643793.screens.dashboard.DashboardDestination
+import uk.ac.tees.mad.w9643793.screens.profile.ProfileDestination
+import uk.ac.tees.mad.w9643793.screens.profile.ProfileScreen
+import uk.ac.tees.mad.w9643793.screens.profile.post.PostDestination
+import uk.ac.tees.mad.w9643793.screens.profile.post.PostScreen
 import uk.ac.tees.mad.w9643793.ui.theme.StudentPortfolioShowcaseTheme
 
 @AndroidEntryPoint
@@ -54,6 +58,7 @@ class MainActivity : ComponentActivity() {
                     val start =
                         if ((currentUser != null) || (googleAuthUiClient.getSignedInUser() != null)) {
                             DashboardDestination.routeName
+//                            PostDestination.routeName
                         } else {
                             SigninDestination.routeName
                         }
@@ -95,7 +100,8 @@ class MainActivity : ComponentActivity() {
                                         "Sign up successful",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                    navController.navigate(DashboardDestination.routeName) },
+                                    navController.navigate(DashboardDestination.routeName)
+                                },
                                 onLogin = {
                                     navController.navigate(SigninDestination.routeName)
                                 }
@@ -103,13 +109,27 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(DashboardDestination.routeName) {
                             Dashboard(
+                                navController = navController
+                            )
+                        }
+                        composable(ProfileDestination.routeName) {
+                            ProfileScreen(
                                 onLogout = {
                                     scope.launch {
                                         firebase.signOut()
                                         googleAuthUiClient.signOut()
                                         navController.navigate(SigninDestination.routeName)
                                     }
-                                }
+                                },
+                                navController = navController
+
+                            )
+
+                        }
+                        composable(PostDestination.routeName) {
+                            PostScreen(
+                                navController = navController
+
                             )
                         }
                     }

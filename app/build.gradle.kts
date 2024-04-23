@@ -4,6 +4,7 @@ plugins {
     id("com.google.gms.google-services")
     id ("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -69,6 +70,11 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.firebase.database)
+
+    //viewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+
     //lottie
     implementation(libs.lottie.compose)
     //navigation
@@ -90,14 +96,16 @@ dependencies {
     // coil for asyncImage
     implementation("io.coil-kt:coil-compose:2.6.0")
 
+    implementation ("androidx.compose.runtime:runtime-livedata:1.6.6")
+
     // Gson library to convert json to object
     implementation ("com.google.code.gson:gson:2.10.1")
 
     //Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.47")
+    implementation("com.google.dagger:hilt-android:2.50")
 
-    ksp ("com.google.dagger:hilt-compiler:2.47")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+    ksp ("com.google.dagger:hilt-compiler:2.49")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

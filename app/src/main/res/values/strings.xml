@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Student Portfolio Showcase</string>
+    <string name="welcome">Welcome</string>
 </resources>
