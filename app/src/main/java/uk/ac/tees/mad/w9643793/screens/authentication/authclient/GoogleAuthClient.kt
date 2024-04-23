@@ -8,12 +8,14 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import kotlinx.coroutines.tasks.await
+import uk.ac.tees.mad.w9643793.BuildConfig
 import uk.ac.tees.mad.w9643793.domain.SignInResult
 import uk.ac.tees.mad.w9643793.domain.UserData
 import java.util.concurrent.CancellationException
 
 
-const val ServerClient = "670802043242-k6cul5hhndafi4dlbuid4h8t502lssl0.apps.googleusercontent.com"
+//Good practice - secure ServerClient key
+//val ServerClient = BuildConfig.ServerClient
 
 class GoogleAuthClient(
     private val oneTapClient: SignInClient
@@ -83,7 +85,7 @@ class GoogleAuthClient(
                 BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                     .setSupported(true)
                     .setFilterByAuthorizedAccounts(false)
-                    .setServerClientId(ServerClient)
+                    .setServerClientId(BuildConfig.ServerClient)
                     .build()
             )
             .setAutoSelectEnabled(true)
