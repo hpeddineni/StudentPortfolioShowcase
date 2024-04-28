@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Travel"
+rootProject.name = "Student Portfolio Showcase"
 include(":app")
